@@ -48,15 +48,15 @@ userCtrl.registerUser = async (req, res) => {
 
 userCtrl.login = async (req, res) => {
   try {
-    const { username, password } = req.body;
-    const user = await User.findOne({ username });
+    const { email, password } = req.body;
+    const user = await User.findOne({ email });
     if (!user) {
       throw new Error("User not found");
     }
 
     const match = await bcrypt.compare(password, user.password);
     if (!match) {
-      throw new Error("Incorrect username or password");
+      throw new Error("Incorrect email or password");
     }
     const token = generateToken(user);
     res.json({
