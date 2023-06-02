@@ -41,7 +41,7 @@ userCtrl.registerUser = async (req, res) => {
     });
   } catch (error) {
     res
-      .status(res.statusCode)
+      .status(400)
       .send("Error registering new user please try again.");
   }
 };
